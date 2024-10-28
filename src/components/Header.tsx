@@ -42,6 +42,7 @@ export default function Header() {
     { href: "/experience", label: "Experience" },
     { href: "/skills", label: "Skills" },
     { href: "/education", label: "Education" },
+    { href: "/training", label: "Training" }, // New Training link added here
     { href: "/contact", label: "Contact" },
   ]
 
