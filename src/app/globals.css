@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--card: 0 0% 100%;
+	--card-foreground: 221 54% 16%;
+	--popover: 0 0% 100%;
+	--popover-foreground: 221 54% 16%;
+	--primary: 39 100% 53%;
+	--primary-foreground: 221 54% 16%;
+	--secondary: 221 54% 16%;
+	--secondary-foreground: 0 0% 100%;
+	--muted: 210 40% 96.1%;
+	--muted-foreground: 215.4 16.3% 46.9%;
+	--accent: 221 54% 16%;
+	--accent-foreground: 0 0% 100%;
+	--destructive: 0 84.2% 60.2%;
+	--destructive-foreground: 210 40% 98%;
+	--border: 214.3 31.8% 91.4%;
+	--input: 214.3 31.8% 91.4%;
+	--ring: 39 100% 53%;
+	--radius: 0.5rem;
+}
+
+@layer base {
+	body {
+		@apply bg-background text-foreground;
+	}
+  :root {
+		--background: 0 0% 100%;
+		--foreground: 0 0% 3.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 0 0% 3.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 0 0% 3.9%;
+		--primary: 0 0% 9%;
+		--primary-foreground: 0 0% 98%;
+		--secondary: 0 0% 96.1%;
+		--secondary-foreground: 0 0% 9%;
+		--muted: 0 0% 96.1%;
+		--muted-foreground: 0 0% 45.1%;
+		--accent: 0 0% 96.1%;
+		--accent-foreground: 0 0% 9%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 89.8%;
+		--input: 0 0% 89.8%;
+		--ring: 0 0% 3.9%;
+		--chart-1: 12 76% 61%;
+		--chart-2: 173 58% 39%;
+		--chart-3: 197 37% 24%;
+		--chart-4: 43 74% 66%;
+		--chart-5: 27 87% 67%;
+		--radius: 0.5rem;
+	}
+  .dark {
+		--background: 0 0% 3.9%;
+		--foreground: 0 0% 98%;
+		--card: 0 0% 3.9%;
+		--card-foreground: 0 0% 98%;
+		--popover: 0 0% 3.9%;
+		--popover-foreground: 0 0% 98%;
+		--primary: 0 0% 98%;
+		--primary-foreground: 0 0% 9%;
+		--secondary: 0 0% 14.9%;
+		--secondary-foreground: 0 0% 98%;
+		--muted: 0 0% 14.9%;
+		--muted-foreground: 0 0% 63.9%;
+		--accent: 0 0% 14.9%;
+		--accent-foreground: 0 0% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 14.9%;
+		--input: 0 0% 14.9%;
+		--ring: 0 0% 83.1%;
+		--chart-1: 220 70% 50%;
+		--chart-2: 160 60% 45%;
+		--chart-3: 30 80% 55%;
+		--chart-4: 280 65% 60%;
+		--chart-5: 340 75% 55%;
+	}
+}
+
+@layer components {
+	.header-footer {
+		@apply bg-[#14213d] text-white;
+	}
+
+	.main-content {
+		@apply bg-[#e5e5e5];
+	}
+
+	.heading-primary {
+		@apply text-4xl sm:text-5xl font-bold text-[#fca311];
+	}
+
+	.heading-secondary {
+		@apply text-2xl sm:text-3xl font-bold text-[#14213d];
+	}
+
+	.subheading {
+		@apply text-xl sm:text-2xl text-muted-foreground;
+	}
+
+	.card-container {
+		@apply bg-white rounded-lg p-6 shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:bg-gray-50;
+	}
+
+	.skill-item {
+		@apply flex items-center space-x-2 bg-[#14213d]/10 p-3 rounded-md transition-all duration-300 ease-in-out hover:bg-[#14213d]/20 hover:shadow-md hover:translate-y-[-2px];
+	}
+
+	.highlight-text {
+		@apply font-semibold text-[#fca311] transition-colors duration-300 ease-in-out hover:text-[#14213d];
+	}
+}
+
+/* Add smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Ensure content is not hidden behind the fixed header */
+body {
+	padding-top: 64px; /* Adjust this value based on your header height */
+}
+@layer base {
+  * {
+    @apply border-border;
+	}
+  body {
+    @apply bg-background text-foreground;
+	}
+}
