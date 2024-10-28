@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowRight, Briefcase, TrendingUp, Leaf, DollarSign, Brain, Rocket, Wrench } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function About() {
   const containerRef = useRef(null)
@@ -51,17 +52,34 @@ export default function About() {
           About Fuzile Zono
         </motion.h1>
 
-        <motion.section className="mb-12" variants={itemVariants}>
-          <h2 className="text-2xl font-semibold mb-4 flex items-center">
-            <Briefcase className="mr-2 text-primary" />
-            Experience & Expertise
-          </h2>
-          <p className="text-lg mb-4">
-            With more than <strong>11 years of experience</strong> in procurement and supply, I focus on sourcing goods and services, supporting <strong>refurbishment, repair and assembly</strong> of key systems like <strong>Stacker Reclaimers, Tipplers, Conveyor Systems, Plant Control and Instrumentation, Marine Mining Systems, Medical Equipment and Oil Refinery Maintenance Materials</strong>.
-          </p>
-          <p className="text-lg mb-4">
-            I have a strong background in <strong>Engineering and Construction procurement</strong>, always aiming for efficient, <strong>compliant, safe, and sustainable</strong> outcomes that meet business needs.
-          </p>
+        <motion.section className="mb-12 flex flex-col md:flex-row items-start gap-8" variants={itemVariants}>
+          <div className="md:w-1/2">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center">
+              <Briefcase className="mr-2 text-primary" />
+              Experience & Expertise
+            </h2>
+            <p className="text-lg mb-4">
+              With more than <strong>11 years of experience</strong> in procurement and supply, I focus on sourcing goods and services, supporting <strong>refurbishment, repair and assembly</strong> of key systems like <strong>Stacker Reclaimers, Tipplers, Conveyor Systems, Plant Control and Instrumentation, Marine Mining Systems, Medical Equipment and Oil Refinery Maintenance Materials</strong>.
+            </p>
+            <p className="text-lg mb-4">
+              I have a strong background in <strong>Engineering and Construction procurement</strong>, always aiming for efficient, <strong>compliant, safe, and sustainable</strong> outcomes that meet business needs.
+            </p>
+          </div>
+          <div className="md:w-1/2">
+            <motion.div
+              className="rounded-lg overflow-hidden shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Image
+                src="/fuzile.jpeg"
+                alt="Fuzile Zono"
+                width={400}
+                height={400}
+                className="w-full h-auto object-cover"
+              />
+            </motion.div>
+          </div>
         </motion.section>
 
         <motion.section className="mb-12" variants={itemVariants}>

@@ -1,22 +1,39 @@
 import React from 'react'
-import { Mail, MapPin, Linkedin, Facebook, Twitter } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
+import Link from 'next/link'
+
+const faqItems = [
+  {
+    question: "What services do you offer?",
+    answer: "I specialize in innovative procurement strategies, supply chain optimization, and strategic sourcing solutions. My services include procurement process improvement, supplier relationship management, and implementation of cutting-edge procurement technologies."
+  },
+  {
+    question: "How can I schedule a consultation?",
+    answer: "You can schedule a consultation by filling out the contact form on this page or by sending an email directly to egiefuz@gmail.com. I'll get back to you within 24-48 hours to arrange a suitable time for our discussion."
+  },
+  {
+    question: "Do you work with international clients?",
+    answer: "Yes, I work with clients globally. My expertise in procurement and supply chain management is applicable across various industries and geographical locations. I'm comfortable with remote collaboration and can adapt to different time zones."
+  },
+  {
+    question: "What industries do you specialize in?",
+    answer: "While my procurement strategies are adaptable to various sectors, I have extensive experience in manufacturing, technology, healthcare, and retail industries. However, I'm always excited to take on new challenges in different sectors."
+  }
+];
 
 export default function Footer() {
   return (
     <footer className="bg-[#14213d] text-white py-12">
       <div className="container mx-auto px-4">
-        <div className="text-left mb-8">
-          <h2 className="text-4xl font-bold text-[#fca311] mb-2">Fuzile Zono</h2>
-          <p className="text-xl">Innovative Procurement Specialist</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-[#fca311] font-semibold text-2xl mb-4">Contact</h3>
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-[#fca311]" />
-                <a href="mailto:fuzile@example.com" className="hover:text-[#fca311] transition-colors">
-                  fuzile@example.com
+                <a href="mailto:egiefuz@gmail.com" className="hover:text-[#fca311] transition-colors">
+                  egiefuz@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
@@ -32,7 +49,7 @@ export default function Footer() {
                 className="text-white hover:text-[#fca311] transition-colors"
                 aria-label="LinkedIn Profile"
               >
-                <Linkedin size={24} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               </a>
               <a 
                 href="https://www.facebook.com/fuzilezono" 
@@ -41,7 +58,7 @@ export default function Footer() {
                 className="text-white hover:text-[#fca311] transition-colors"
                 aria-label="Facebook Profile"
               >
-                <Facebook size={24} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
               </a>
               <a 
                 href="https://twitter.com/fuzilezono" 
@@ -50,7 +67,7 @@ export default function Footer() {
                 className="text-white hover:text-[#fca311] transition-colors"
                 aria-label="Twitter Profile"
               >
-                <Twitter size={24} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
               </a>
             </div>
           </div>
@@ -72,14 +89,29 @@ export default function Footer() {
               <li>Manufacturing</li>
             </ul>
           </div>
+          <div>
+            <h3 className="text-[#fca311] font-semibold text-xl mb-4">FAQs</h3>
+            <Accordion type="single" collapsible className="w-full">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index + 1}`}>
+                  <AccordionTrigger className="text-white hover:text-[#fca311]">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-300">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
-        <div className="border-t border-gray-600 pt-8 text-center">
+        <div className="border-t border-gray-600 mt-8 pt-8 text-center">
           <p>&copy; {new Date().getFullYear()} Fuzile Zono. All rights reserved.</p>
         </div>
         <div className="mt-4 text-center text-xs text-gray-500">
-          <a href="https://devmajxr.co.za" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[#fca311] transition-colors">
+          <Link href="https://devmajxr.co.za" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[#fca311] transition-colors">
             website by Dev-Majxr
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

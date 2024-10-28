@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { ChevronDown, ChevronUp, Briefcase, Building2, MapPin, Calendar } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -211,7 +212,7 @@ const experiences: Experience[] = [
     title: "Sales Consultant",
     company: "Capitec Bank",
     date: "Sep 2007 to Aug  2012 · 5 yrs",
-    location: "Cape Town, Western Cape, South Africa · On-site",
+    location: "Cape Town,   Western Cape, South Africa · On-site",
     responsibilities: [
       "Provide exceptional client service by fulfilling and exceeding expressed needs in areas such as Save, Transact, Credit, and Insure.",
       "Consult with clients to understand their financial requirements, ensuring satisfaction with Capitec's services.",
@@ -286,90 +287,103 @@ export default function Experience() {
   };
 
   return (
-    <motion.div 
-      ref={containerRef}
-      className="min-h-screen bg-gradient-to-b from-background to-background/80 py-16 px-4 sm:px-6 lg:px-8"
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
-    >
-      <div className="max-w-4xl mx-auto">
-        <motion.h1 
-          className="text-4xl font-bold text-primary mb-4"
-          variants={itemVariants}
-        >
-          Work Experience
-        </motion.h1>
-        <motion.p 
-          className="text-xl text-muted-foreground mb-8"
-          variants={itemVariants}
-        >
-          A journey through my professional growth and achievements
-        </motion.p>
-        {experiences.map((exp, index) => (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <Card className="mb-6 transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle className="text-2xl font-semibold">{exp.title}</CardTitle>
-                    <CardDescription className="flex items-center mt-1">
-                      <Building2 className="mr-1 h-4 w-4" />
-                      {exp.company}
-                    </CardDescription>
-                    <p className="text-sm text-muted-foreground mt-1 flex items-center">
-                      <Calendar className="mr-1 h-4 w-4" />
-                      {exp.date}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-1 flex items-center">
-                      <MapPin className="mr-1 h-4 w-4" />
-                      {exp.location}
-                    </p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => toggleExperience(index)}
-                    aria-label={expandedExperience === index ? "Collapse details" : "Expand details"}
-                  >
-                    {expandedExperience === index ? (
-                      <ChevronUp className="h-4 w-4" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
-              </CardHeader>
-              {expandedExperience === index && (
-                <CardContent>
-                  <h3 className="font-semibold mb-2 flex items-center">
-                    <Briefcase className="mr-2 h-4 w-4" />
-                    Key Responsibilities
-                  </h3>
-                  <ul className="list-disc pl-5 mb-4 space-y-1">
-                    {exp.responsibilities.map((resp, i) => (
-                      <li key={i} className="text-sm">{resp}</li>
-                    ))}
-                  </ul>
-                  <h3 className="font-semibold mb-2">Skills</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.skills.map((skill, i) => (
-                      <span key={i} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              )}
-            </Card>
-          </motion.div>
-        ))}
+    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+      <div className="relative w-full aspect-[21/9] md:aspect-[21/7] lg:aspect-[21/6]">
+        <Image
+          src="/experience-banner.jpg"
+          alt="Experience Banner"
+          fill
+          quality={100}
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center px-4">
+            Professional Experience
+          </h1>
+        </div>
       </div>
-    </motion.div>
+
+      <motion.div 
+        ref={containerRef}
+        className="py-16 px-4 sm:px-6 lg:px-8"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        <div className="max-w-4xl mx-auto">
+          <motion.p 
+            className="text-xl text-muted-foreground mb-8 text-center"
+            variants={itemVariants}
+          >
+            A journey through my professional growth and achievements
+          </motion.p>
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Card className="mb-6 transition-shadow hover:shadow-lg">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="text-2xl font-semibold">{exp.title}</CardTitle>
+                      <CardDescription className="flex items-center mt-1">
+                        <Building2 className="mr-1 h-4 w-4" />
+                        {exp.company}
+                      </CardDescription>
+                      <p className="text-sm text-muted-foreground mt-1 flex items-center">
+                        <Calendar className="mr-1 h-4 w-4" />
+                        {exp.date}
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-1 flex items-center">
+                        <MapPin className="mr-1 h-4 w-4" />
+                        {exp.location}
+                      </p>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => toggleExperience(index)}
+                      aria-label={expandedExperience === index ? "Collapse details" : "Expand details"}
+                    >
+                      {expandedExperience === index ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </div>
+                </CardHeader>
+                {expandedExperience === index && (
+                  <CardContent>
+                    <h3 className="font-semibold mb-2 flex items-center">
+                      <Briefcase className="mr-2 h-4 w-4" />
+                      Key Responsibilities
+                    </h3>
+                    <ul className="list-disc pl-5 mb-4 space-y-1">
+                      {exp.responsibilities.map((resp, i) => (
+                        <li key={i} className="text-sm">{resp}</li>
+                      ))}
+                    </ul>
+                    <h3 className="font-semibold mb-2">Skills</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.skills.map((skill, i) => (
+                        <span key={i} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                )}
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
   )
 }

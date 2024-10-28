@@ -62,14 +62,15 @@ export default function Header() {
       className="bg-[#14213d] text-[#e5e5e5] shadow-md fixed top-0 left-0 right-0 w-full z-50"
     >
       <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
-        <Link href="/" className="z-50">
+        <Link href="/" className="z-50 flex items-center">
           <Image
-            src="/official-logo.png"
+            src="/new-logo.png"
             alt="Fuzile Zono Logo"
             width={80}
             height={80}
             className="w-auto h-12 rounded"
           />
+          <span className="ml-2 text-xl font-bold">FUZILE ZONO</span>
         </Link>
         <div className="md:hidden z-50">
           <button 

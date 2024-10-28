@@ -3,28 +3,55 @@
 import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, Variants, useInView, useAnimation } from 'framer-motion'
-import { ArrowRight, Briefcase, TrendingUp, Leaf, DollarSign, Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion, Variants, useInView, useAnimation, AnimatePresence } from 'framer-motion'
+import { Briefcase, TrendingUp, Leaf, DollarSign, Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
-const blobVariants: Variants = {
-  animate: {
-    borderRadius: [
-      '60% 40% 30% 70%/60% 30% 70% 40%',
-      '30% 60% 70% 40%/50% 60% 30% 60%',
-      '60% 40% 30% 70%/60% 30% 70% 40%'
-    ],
-    transition: {
-      duration: 8,
-      ease: "easeInOut",
-      repeat: Infinity,
-      repeatType: "reverse"
-    }
+const heroData = [
+  {
+    title: "Innovative Procurement Solutions",
+    text: "Transforming businesses through strategic sourcing and cost optimization",
+    image: "/background/background-image1.jpg"
+  },
+  {
+    title: "Sustainable Supply Chain Management",
+    text: "Creating eco-friendly and efficient supply networks for a better future",
+    image: "/background/background-image2.jpg"
+  },
+  {
+    title: "Digital Procurement Transformation",
+    text: "Leveraging technology to streamline procurement processes and drive growth",
+    image: "/background/background-image3.jpg"
+  },
+  {
+    title: "Global Sourcing Expertise",
+    text: "Navigating international markets to find the best value for your business",
+    image: "/background/background-image4.jpg"
+  },
+  {
+    title: "Risk Management in Procurement",
+    text: "Identifying and mitigating risks to ensure supply chain resilience",
+    image: "/background/background-image5.jpg"
+  },
+  {
+    title: "Procurement Analytics and Insights",
+    text: "Data-driven decision making for optimized procurement strategies",
+    image: "/background/background-image6.jpg"
   }
-}
+]
 
 export default function Home() {
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIndex((prevIndex) => (prevIndex + 1) % heroData.length)
+    }, 6000) // Change image every 6 seconds
+
+    return () => clearInterval(timer)
+  }, [])
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -219,90 +246,73 @@ export default function Home() {
       variants={containerVariants}
       className="bg-gradient-to-b from-background to-background/80"
     >
-      <div className="min-h-screen flex items-center">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            ref={heroRef}
-            initial={{ opacity: 0, y: 50 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col md:flex-row items-center justify-between"
+      <div className="min-h-screen relative overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentHeroIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
           >
-            <div className="md:hidden w-full mb-8">
-              <motion.div
-                variants={blobVariants}
-                animate="animate"
-                className="w-[300px] h-[300px] mx-auto overflow-hidden"
+            <Image
+              src={heroData[currentHeroIndex].image}
+              alt={heroData[currentHeroIndex].title}
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50" />
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="relative z-10 min-h-screen flex items-center">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              ref={heroRef}
+              initial={{ opacity: 0, y: 50 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+              className="text-center text-white"
+            >
+              <motion.h1
+                key={`title-${currentHeroIndex}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl md:text-6xl font-bold mb-4"
               >
-                <Image
-                  src="/fuzile.jpeg"
-                  alt="Fuzile Zono"
-                  width={300}
-                  height={300}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </div>
-            <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
-                <span className="text-[#14213d]">F</span>uzile <span className="text-[#14213d]">Z</span>ono
-              </h1>
-              <h2 className="text-2xl md:text-3xl text-muted-foreground mb-4">
-                Innovative Procurement Specialist
-              </h2>
-              <p className="text-xl mb-6 text-secondary">
-                Transforming procurement strategies with over a decade of expertise.
-              </p>
-              <p className="text-lg mb-6">
-                With over 11 years of experience in Oil & Gas, Mining, and Public Procurement, I specialize in:
-              </p>
-              <ul className="list-none space-y-2 mb-6">
-                <li className="flex items-center">
-                  <DollarSign className="mr-2 text-primary" />
-                  Cutting costs
-                </li>
-                <li className="flex items-center">
-                  <TrendingUp className="mr-2 text-primary" />
-                  Boosting efficiency
-                </li>
-                <li className="flex items-center">
-                  <Leaf className="mr-2 text-primary" />
-                  Driving sustainability
-                </li>
-              </ul>
-              <div className="space-x-4">
-                <Button asChild>
-                  <Link href="/about" className="flex items-center">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                {heroData[currentHeroIndex].title}
+              </motion.h1>
+              <motion.p
+                key={`text-${currentHeroIndex}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-xl md:text-2xl mb-8"
+              >
+                {heroData[currentHeroIndex].text}
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Button asChild size="lg" className="mr-4">
+                  <Link href="/about">Learn More</Link>
                 </Button>
                 <Button 
-                  variant="outline" 
                   asChild 
-                  className="bg-secondary hover:bg-secondary/90 text-[#fca311]"
+                  size="lg" 
+                  variant="outline"
+                  className="bg-[#fca311] text-[#14213d] hover:bg-[#fca311]/90"
                 >
-                  <Link href="/experience" className="flex items-center">
-                    View Experience <Briefcase className="ml-2 h-4 w-4" />
-                  </Link>
+                  <Link href="/contact">Get in  touch</Link>
                 </Button>
-              </div>
-            </div>
-            <div className="hidden md:block md:w-1/2">
-              <motion.div
-                variants={blobVariants}
-                animate="animate"
-                className="w-[400px] h-[400px] mx-auto overflow-hidden"
-              >
-                <Image
-                  src="/fuzile.jpeg"
-                  alt="Fuzile Zono"
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
               </motion.div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
@@ -325,17 +335,17 @@ export default function Home() {
                 whileHover="hover"
               >
                 <Card className="h-full bg-card overflow-hidden group border border-[#14213d] hover:border-[#14213d]/60 transition-colors duration-300">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0  bg-gradient-to-br from-primary/10 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <CardHeader className="relative z-10">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                       <item.icon className="h-6 w-6 text-primary" />
-                    
                     </div>
                     <CardTitle className="text-xl font-semibold">{item.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="relative z-10">
                     <p className="text-muted-foreground">{item.description}</p>
                   </CardContent>
+                
                 </Card>
               </motion.div>
             ))}
