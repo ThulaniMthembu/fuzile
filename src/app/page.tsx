@@ -41,13 +41,130 @@ const heroData = [
   }
 ]
 
-export default function Home() {
+const expertise = [
+  {
+    icon: Briefcase,
+    title: "Strategic Procurement",
+    description: "Developing and implementing innovative procurement strategies to optimize costs and improve efficiency."
+  },
+  {
+    icon: TrendingUp,
+    title: "Supply Chain Optimization",
+    description: "Streamlining supply chain processes to enhance overall operational performance and reduce lead times."
+  },
+  {
+    icon: Leaf,
+    title: "Sustainable Procurement",
+    description: "Implementing eco-friendly procurement practices to drive sustainability and reduce environmental impact."
+  },
+  {
+    icon: DollarSign,
+    title: "Cost Reduction",
+    description: "Identifying and executing cost-saving initiatives across the procurement lifecycle."
+  },
+  {
+    icon: Briefcase,
+    title: "Vendor Management",
+    description: "Building and maintaining strong relationships with suppliers to ensure optimal performance and value."
+  },
+  {
+    icon: TrendingUp,
+    title: "Procurement Analytics",
+    description: "Leveraging data-driven insights to make informed decisions and improve procurement outcomes."
+  }
+]
+
+const recommendations = [
+  {
+    name: "Marginique Abrahams",
+    role: "System Administrator at De Beers Marine",
+    text: "Fuzile is a very helpful colleague, always goes out of his way to assist! He will definitely be an asset to any organisation!",
+    date: "September 15, 2023"
+  },
+  {
+    name: "Ayesha Seedat",
+    role: "GeoSurvey Operations Controller @ De Beers Marine",
+    text: "I can recommend him as a passionate and diligent professional in his field. He prides himself in his work and has been a great mentor and coach.",
+    date: "July 16, 2023"
+  },
+  {
+    name: "Onke Zenzwa",
+    role: "Category Buyer at African Marine Solutions (AMSOL)",
+    text: "Been privilege to work closer with Fuzile, he was one of the best teammates. He has portrayed stand-out leadership qualities.",
+    date: "April 20, 2023"
+  },
+  {
+    name: "Vuyo Njongi",
+    role: "Procurement Specialist : Western Provincial Treasury",
+    text: "Excellent report writing skills, data analyst, Power BI expert, strong business systems analysis, good negotiator, contract specialist.",
+    date: "April 12, 2023"
+  },
+  {
+    name: "DK ZILWA",
+    role: "Data driven decision making advocate | Business Intelligence | Data Analysis | PowerBI",
+    text: "Outstanding Technical Buyer with exceptional data analysis skills. His proficiency in PowerBI, problem-solving skills are truly impressive.",
+    date: "March 21, 2023"
+  },
+  {
+    name: "Stephen William Grobler",
+    role: "Technical Consultant at Lifting & Mining Solutions Pry Ltd",
+    text: "Fuzile is very knowledgeable in Procurement, Supply and relates well with technical personnel.",
+    date: "March 15, 2023"
+  },
+  {
+    name: "Rashid Delie",
+    role: "Buyer, De Beers Group",
+    text: "Brilliant mind, analytical and concise, one of the best in the SCM business.",
+    date: "March 13, 2023"
+  },
+  {
+    name: "Nomvana Marwanqana",
+    role: "Key Account Manager at Transnet Port Terminals",
+    text: "Fuzile is a highly motivated person who is always pushing himself and who is not scared of challenges..",
+    date: "January 20, 2021"
+  },
+  {
+    name: "Mpfuxelelo Makondo",
+    role: "Sourcing Specialist, Santam Insurance",
+    text: "He's displayed his tenacious character and ability to solve problems through innovation..",
+    date: "January 18, 2021"
+  },
+  {
+    name: "Amanda Duli",
+    role: "Category Manager - General Services",
+    text: "He's honest, dependable, and incredibly hardworking. He is very analytical, digs deeper to address challenges and solves them.",
+    date: "January 15, 2021"
+  },
+  {
+    name: "Nokwazi Dlamini",
+    role: "TD Creditors Controller at (Engen) Vivo Energy",
+    text: "He demonstrates high levels of accuracy and work productivity. All documentations are completed on time with no errors.",
+    date: "January 15, 2021"
+  },
+  {
+    name: "Stephan Smit",
+    role: "Project Portfolio Management Consultant",
+    text: "Highly motivated problem solver with an innovative approach to operational and strategic challenges an asset to any team!",
+    date: "January 15, 2021"
+  },
+  {
+    name: "Pati Dumisani, Pr. Eng",
+    role: "Project Manager & Alternative Energy Developer at Engen",
+    text: "He consistently demonstrates professionalism and stakeholder focus, achieving quick turnaround times for his team and business.",
+    date: "January 15, 2021"
+  }
+]
+
+export default function Component() {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0)
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [maxScroll, setMaxScroll] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentHeroIndex((prevIndex) => (prevIndex + 1) % heroData.length)
-    }, 6000) // Change image every 6 seconds
+    }, 6000)
 
     return () => clearInterval(timer)
   }, [])
@@ -76,138 +193,36 @@ export default function Home() {
     }
   }
 
-  const expertise = [
-    {
-      icon: Briefcase,
-      title: "Strategic Procurement",
-      description: "Developing and implementing innovative procurement strategies to optimize costs and improve efficiency."
-    },
-    {
-      icon: TrendingUp,
-      title: "Supply Chain Optimization",
-      description: "Streamlining supply chain processes to enhance overall operational performance and reduce lead times."
-    },
-    {
-      icon: Leaf,
-      title: "Sustainable Procurement",
-      description: "Implementing eco-friendly procurement practices to drive sustainability and reduce environmental impact."
-    },
-    {
-      icon: DollarSign,
-      title: "Cost Reduction",
-      description: "Identifying and executing cost-saving initiatives across the procurement lifecycle."
-    },
-    {
-      icon: Briefcase,
-      title: "Vendor Management",
-      description: "Building and maintaining strong relationships with suppliers to ensure optimal performance and value."
-    },
-    {
-      icon: TrendingUp,
-      title: "Procurement Analytics",
-      description: "Leveraging data-driven insights to make informed decisions and improve procurement outcomes."
-    }
-  ]
-
-  const recommendations = [
-    {
-      name: "Marginique Abrahams",
-      role: "System Administrator at De Beers Marine",
-      text: "Fuzile is a very helpful colleague, always goes out of his way to assist! He will definitely be an asset to any organisation as he is intelligent, eager and a team player!",
-      date: "September 15, 2023"
-    },
-    {
-      name: "Ayesha Seedat",
-      role: "GeoSurvey Operations Controller @ De Beers Marine",
-      text: "I have worked with Fuzile and can recommend him as a passionate and diligent professional in his field. He prides himself in his work and has been a great mentor and coach. In his work, Fuzile has demonstrated a high level of professionalism, integrity, and commitment.",
-      date: "July 16, 2023"
-    },
-    {
-      name: "Onke Zenzwa",
-      role: "Category Buyer at African Marine Solutions (AMSOL)",
-      text: "Been privilege to work closer with Fuzile, he was one of the best teammate. He has portrayed stand-out leadership qualities. He is such an asset to the organisation and he is always willing to groom others to become better.",
-      date: "April 20, 2023"
-    },
-    {
-      name: "Vuyo Njongi",
-      role: "Procurement Specialist : Western Provincial Treasury",
-      text: "Excellent report writing skills, data analyst, Power BI expect, strong business systems analysis, good negotiator, contract specialist.",
-      date: "April 12, 2023"
-    },
-    {
-      name: "DK ZILWA",
-      role: "Data driven decision making advocate | Business Intelligence | Data Analysis | PowerBI",
-      text: "I am pleased to recommend Fuzile Zono for his exceptional skills and capabilities in technical buying, data analysis, and the use of Power BI. His proficiency in PowerBI and his analytical and problem-solving skills are truly impressive.",
-      date: "March 21, 2023"
-    },
-    {
-      name: "Stephen William Grobler",
-      role: "Technical Consultant at Lifting & Mining Solutions Pry Ltd",
-      text: "Fuzile is a very knowledgeable in Procucurment, Supply and Relates well with Technical personal...",
-      date: "March 15, 2023"
-    },
-    {
-      name: "Rashid Delie",
-      role: "Buyer , De Beers Group",
-      text: "Brilliant mind, analytical and concise, one of the best in the SCM business",
-      date: "March 13, 2023"
-    },
-    {
-      name: "Nomvana Marwanqana",
-      role: "Top 5 finalist in the Rising Stars Awards. category: Transport, Logistics & Security 2018. Key Account Manager at Transnet Port Terminals",
-      text: "Fuzile is a highly motivated person who is always pushing himself and who is not scared of challenges. That I saw when he left Transnet (which would be considered a safe zone) and went to a private company where he works now.",
-      date: "January 20, 2021"
-    },
-    {
-      name: "Mpfuxelelo Makondo",
-      role: "Sourcing Specialist, Santam Insurance",
-      text: "When I think about an exceptional value driven individual, Fuzile Zono comes to my mind. I've had the pleasure of working closely with Fuzile on a daily basis and on several projects where he has displayed his tenacious character and ability to solve problems through innovation.",
-      date: "January 18, 2021"
-    },
-    {
-      name: "Amanda Duli",
-      role: "Category Manager - General Services",
-      text: "It's my absolute pleasure to recommend Fuzile Zono. Fuzile and I are colleagues at Engen. I thoroughly enjoy working with Fuzile Zono. I came to know him as a truly valuable asset to our team. He is honest, dependable, and incredibly hardworking.",
-      date: "January 15, 2021"
-    },
-    {
-      name: "Nokwazi Dlamini",
-      role: "TD Creditors Controller at (Engen) Vivo Energy",
-      text: "Fuzile Zono Managers and co-workers have commented on high levels of accuracy and work productivity. Takes pride in work and strives to improve work performance. All memos, reports, forms and correspondence are completed on time with no errors.",
-      date: "January 15, 2021"
-    },
-    {
-      name: "Stephan Smit",
-      role: "Project Portfolio Management Consultant || Project Office Implementor",
-      text: "Fuzile is highly motivated and a problem solver! His innovative mindset to tackle operational and strategic challenges is what makes him an asset to any team!",
-      date: "January 15, 2021"
-    },
-    {
-      name: "Pati Dumisani, Pr. Eng",
-      role: "Project Manager & Alternative Energy Developer at Engen",
-      text: "He has consistently demonstrated high levels of professionalism and stakeholder focus. In a mix of emergencies, breakdowns and project work, he has obtained quick turnaround times for his team and business.",
-      date: "January 15, 2021"
-    }
-  ]
-
   const heroRef = useRef(null)
   const expertiseRef = useRef(null)
   const recommendationsRef = useRef(null)
   const ctaRef = useRef(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  
+  const [isPaused, setIsPaused] = useState(false)
+  const scrollAnimation = useAnimation()
 
   const heroInView = useInView(heroRef, { once: true, amount: 0.5 })
   const expertiseInView = useInView(expertiseRef, { once: true, amount: 0.2 })
   const recommendationsInView = useInView(recommendationsRef, { once: true, amount: 0.2 })
   const ctaInView = useInView(ctaRef, { once: true, amount: 0.5 })
 
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [isPaused, setIsPaused] = useState(false)
-  const scrollAnimation = useAnimation()
-
+  // Handle component mounting
   useEffect(() => {
+    setIsMounted(true)
+    return () => setIsMounted(false)
+  }, [])
+
+  // Initialize animation after component is mounted
+  useEffect(() => {
+    if (!isMounted) return
+
+    const totalWidth = recommendations.length * 320
+    setMaxScroll(totalWidth - window.innerWidth)
+
     if (!isPaused) {
       scrollAnimation.start({
-        x: [0, -2000],
+        x: -maxScroll,
         transition: {
           x: {
             repeat: Infinity,
@@ -220,22 +235,50 @@ export default function Home() {
     } else {
       scrollAnimation.stop()
     }
-  }, [scrollAnimation, isPaused])
+
+    return () => {
+      if (isMounted) {
+        scrollAnimation.stop()
+      }
+    }
+  }, [scrollAnimation, isPaused, maxScroll, isMounted])
+
+  // Initialize scroll position
+  useEffect(() => {
+    if (!isMounted) return
+
+    const initializeAnimation = () => {
+      scrollAnimation.set({ x: 0 })
+      setScrollPosition(0)
+    }
+
+    window.requestAnimationFrame(initializeAnimation)
+  }, [scrollAnimation, isMounted])
 
   const handlePauseResume = () => {
     setIsPaused(!isPaused)
   }
 
   const handlePrevious = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -320, behavior: 'smooth' })
-    }
+    if (!isMounted) return
+    scrollAnimation.stop()
+    const newPosition = Math.min(scrollPosition + 320, 0)
+    setScrollPosition(newPosition)
+    scrollAnimation.start({
+      x: newPosition,
+      transition: { duration: 0.5 }
+    })
   }
 
   const handleNext = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' })
-    }
+    if (!isMounted) return
+    scrollAnimation.stop()
+    const newPosition = Math.max(scrollPosition - 320, -maxScroll)
+    setScrollPosition(newPosition)
+    scrollAnimation.start({
+      x: newPosition,
+      transition: { duration: 0.5 }
+    })
   }
 
   return (
@@ -299,16 +342,16 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <Button asChild size="lg" className="mr-4">
+                <Button asChild size="lg" className="mr-4 bg-[#fca311] text-[#14213d] hover:bg-[#fca311]/90">
                   <Link href="/about">Learn More</Link>
                 </Button>
                 <Button 
                   asChild 
                   size="lg" 
                   variant="outline"
-                  className="bg-[#fca311] text-[#14213d] hover:bg-[#fca311]/90"
+                  className="bg-transparent text-white border-white hover:bg-white hover:text-[#14213d]"
                 >
-                  <Link href="/contact">Get in  touch</Link>
+                  <Link href="/contact">Get in touch</Link>
                 </Button>
               </motion.div>
             </motion.div>
@@ -335,17 +378,16 @@ export default function Home() {
                 whileHover="hover"
               >
                 <Card className="h-full bg-card overflow-hidden group border border-[#14213d] hover:border-[#14213d]/60 transition-colors duration-300">
-                  <div className="absolute inset-0  bg-gradient-to-br from-primary/10 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <CardHeader className="relative z-10">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                       <item.icon className="h-6 w-6 text-primary" />
                     </div>
                     <CardTitle className="text-xl font-semibold">{item.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="relative z-10">
+<CardContent className="relative z-10">
                     <p className="text-muted-foreground">{item.description}</p>
                   </CardContent>
-                
                 </Card>
               </motion.div>
             ))}
@@ -357,35 +399,36 @@ export default function Home() {
           initial={{ opacity: 0, y: 50 }}
           animate={recommendationsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-16 overflow-hidden"
+          className="mb-16 overflow-hidden bg-gray-50 py-12"
         >
-          <h2 className="text-4xl font-bold mb-12 text-center">Recommendations</h2>
+          <h2 className="text-4xl font-bold mb-4 text-center text-[#14213d]">Recommendations</h2>
+          <p className="text-center text-gray-600 mb-8">These summarized recommendations are from LinkedIn, showcasing my professional impact and collaborations.</p>
           <div className="flex justify-center space-x-4 mb-4">
-            <Button onClick={handlePrevious} variant="outline" size="icon">
+            <Button onClick={handlePrevious} variant="outline" size="icon" disabled={scrollPosition === 0}>
               <ChevronLeft className="h-4 w-4" />
             </Button>
             <Button onClick={handlePauseResume} variant="outline" size="icon">
               {isPaused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
             </Button>
-            <Button onClick={handleNext} variant="outline" size="icon">
+            <Button onClick={handleNext} variant="outline" size="icon" disabled={scrollPosition <= -maxScroll}>
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
           <div 
             ref={scrollRef}
-            className="flex overflow-x-hidden"
+            className="flex snap-x snap-mandatory pb-4 w-full"
           >
             <motion.div 
-              className="flex"
+              className="flex w-[3600px]"
               animate={scrollAnimation}
             >
               {[...recommendations, ...recommendations].map((recommendation, index) => (
-                <Card key={index} className="flex-shrink-0 w-[300px] mx-4 bg-card overflow-hidden group border border-[#14213d] hover:border-[#14213d]/60 transition-colors duration-300">
+                <Card key={index} className="flex-shrink-0 w-[300px] mx-4 bg-white shadow-sm rounded-lg overflow-hidden border-t-4 border-[#fca311] card-hover-effect">
                   <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-1">{recommendation.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">{recommendation.role}</p>
-                    <p className="text-sm mb-4 line-clamp-4">{recommendation.text}</p>
-                    <p className="text-xs text-muted-foreground">{recommendation.date}</p>
+                    <h3 className="font-medium text-lg mb-1 text-[#14213d]">{recommendation.name}</h3>
+                    <p className="text-sm text-gray-500 mb-3">{recommendation.role}</p>
+                    <p className="text-sm mb-4 line-clamp-4 text-gray-700">{recommendation.text}</p>
+                    <p className="text-xs text-gray-400 mt-auto">{recommendation.date}</p>
                   </CardContent>
                 </Card>
               ))}

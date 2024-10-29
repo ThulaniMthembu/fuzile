@@ -42,8 +42,9 @@ export default function Header() {
     { href: "/experience", label: "Experience" },
     { href: "/skills", label: "Skills" },
     { href: "/education", label: "Education" },
-    { href: "/training", label: "Training" }, // New Training link added here
+    { href: "/training", label: "Training" },
     { href: "/contact", label: "Contact" },
+    { href: "/blog", label: "Blog" }
   ]
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -70,7 +71,7 @@ export default function Header() {
             height={80}
             className="w-auto h-12 rounded"
           />
-          <span className="ml-2 text-xl font-bold">FUZILE ZONO</span>
+          <span className="ml-2 text-xl font-bold"><span className="text-[#fca311]">F</span>UZILE <span className="text-[#fca311]">Z</span>ONO</span>
         </Link>
         <div className="md:hidden z-50">
           <button 

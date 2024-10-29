@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useForm, SubmitHandler, UseFormRegister, FieldErrors } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
+import emailjs from '@emailjs/browser'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -13,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from 'next/image'
 import { Mail, MapPin, User, Clock } from 'lucide-react'
+import { Toaster, toast } from 'react-hot-toast'
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -30,24 +32,48 @@ type FormValues = z.infer<typeof formSchema>
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
   })
 
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 
+        !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 
+        !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+      console.error('EmailJS environment variables are not set correctly')
+    }
+  }, [])
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsSubmitting(true)
-    // Here you would typically send the form data to your server or a third-party service
-    console.log(data)
-    await new Promise(resolve => setTimeout(resolve, 2000)) // Simulating API call
-    setIsSubmitting(false)
-    setSubmitStatus('success')
-    reset()
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      )
+      toast.success("Thank you for your message. I'll get back to you soon!")
+      reset()
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      if (error instanceof Error) {
+        console.error('Error message:', error.message)
+      }
+      toast.error("An error occurred. Please try again later or contact us directly.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80 py-16 px-4 sm:px-6 lg:px-8">
+      <Toaster position="top-right" />
       <div className="max-w-7xl mx-auto">
         <PageHeader />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -55,7 +81,6 @@ export default function ContactPage() {
           <RightColumn 
             onSubmit={onSubmit}
             isSubmitting={isSubmitting}
-            submitStatus={submitStatus}
             register={register}
             errors={errors}
             handleSubmit={handleSubmit}
@@ -170,13 +195,12 @@ function Availability() {
 interface RightColumnProps {
   onSubmit: SubmitHandler<FormValues>;
   isSubmitting: boolean;
-  submitStatus: 'idle' | 'success' | 'error';
   register: UseFormRegister<FormValues>;
   errors: FieldErrors<FormValues>;
   handleSubmit: (onSubmit: SubmitHandler<FormValues>) => (e?: React.BaseSyntheticEvent) => Promise<void>;
 }
 
-function RightColumn({ onSubmit, isSubmitting, submitStatus, register, errors, handleSubmit }: RightColumnProps) {
+function RightColumn({ onSubmit, isSubmitting, register, errors, handleSubmit }: RightColumnProps) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -209,12 +233,6 @@ function RightColumn({ onSubmit, isSubmitting, submitStatus, register, errors, h
               {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>
-          {submitStatus === 'success' && (
-            <p className="mt-4 text-green-600">Thank you for your message. I&apos;ll get back to you soon!</p>
-          )}
-          {submitStatus === 'error' && (
-            <p className="mt-4 text-red-600">An error occurred. Please try again later.</p>
-          )}
         </CardContent>
       </Card>
     </motion.div>

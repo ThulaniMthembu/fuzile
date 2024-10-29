@@ -13,10 +13,28 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.fuzilezono.com/projects</loc>
+    <loc>https://www.fuzilezono.com/experience</loc>
     <lastmod>2024-03-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.fuzilezono.com/skills</loc>
+    <lastmod>2024-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.fuzilezono.com/education</loc>
+    <lastmod>2024-03-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.fuzilezono.com/training</loc>
+    <lastmod>2024-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.fuzilezono.com/contact</loc>
@@ -25,9 +43,9 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.fuzilezono.com/training</loc>
+    <loc>https://www.fuzilezono.com/blog</loc>
     <lastmod>2024-03-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

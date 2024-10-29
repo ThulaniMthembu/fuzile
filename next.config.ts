@@ -3,13 +3,33 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['placeholder.com'], // Add any image domains you'll be using
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.public.blob.vercel-storage.com',
+      },
+    ],
+    domains: ['placeholder.com'], // Add any other image domains you'll be using
   },
   i18n: {
     locales: ['en'],
     defaultLocale: 'en',
   },
-  // Add any other Next.js 15.0.1 compatible options here
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
+  },
+  // Progressive Web App configuration
+  pwa: {
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development',
+    register: true,
+    scope: '/',
+    sw: 'service-worker.js',
+  },
 };
 
 export default nextConfig;
