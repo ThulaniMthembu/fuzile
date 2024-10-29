@@ -17,30 +17,7 @@ interface BlogPost {
 }
 
 const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "The Future of Procurement: AI and Machine Learning",
-    author: "Fuzile Zono",
-    date: "2023-06-15",
-    content: "Artificial intelligence and machine learning are revolutionizing the procurement industry. These technologies are enabling more efficient processes, better decision-making, and predictive analytics that can help organizations stay ahead of market trends...",
-    category: "Technology"
-  },
-  {
-    id: 2,
-    title: "Sustainable Procurement Practices for 2023",
-    author: "Jane Doe",
-    date: "2023-05-22",
-    content: "Sustainable procurement is no longer just a trend, but a necessity. Organizations are increasingly focusing on environmental, social, and governance (ESG) factors in their procurement processes. This article explores the latest trends in sustainable procurement and how they can benefit your organization...",
-    category: "Sustainability"
-  },
-  {
-    id: 3,
-    title: "Navigating Global Supply Chain Disruptions",
-    author: "John Smith",
-    date: "2023-04-10",
-    content: "Global supply chains have faced unprecedented challenges in recent years. From the COVID-19 pandemic to geopolitical tensions, organizations need to be prepared for disruptions. This post discusses strategies to mitigate risks and maintain operational efficiency in the face of global supply chain challenges...",
-    category: "Supply Chain"
-  }
+  
 ]
 
 export default function BlogPage() {

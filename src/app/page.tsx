@@ -207,13 +207,11 @@ export default function Component() {
   const recommendationsInView = useInView(recommendationsRef, { once: true, amount: 0.2 })
   const ctaInView = useInView(ctaRef, { once: true, amount: 0.5 })
 
-  // Handle component mounting
   useEffect(() => {
     setIsMounted(true)
     return () => setIsMounted(false)
   }, [])
 
-  // Initialize animation after component is mounted
   useEffect(() => {
     if (!isMounted) return
 
@@ -243,7 +241,6 @@ export default function Component() {
     }
   }, [scrollAnimation, isPaused, maxScroll, isMounted])
 
-  // Initialize scroll position
   useEffect(() => {
     if (!isMounted) return
 
@@ -299,13 +296,17 @@ export default function Component() {
             transition={{ duration: 1 }}
             className="absolute inset-0"
           >
-            <Image
-              src={heroData[currentHeroIndex].image}
-              alt={heroData[currentHeroIndex].title}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={heroData[currentHeroIndex].image}
+                alt={heroData[currentHeroIndex].title}
+                fill
+                className="object-cover"
+                quality={100}
+                priority
+                sizes="100vw"
+              />
+            </div>
             <div className="absolute inset-0 bg-black bg-opacity-50" />
           </motion.div>
         </AnimatePresence>
@@ -385,7 +386,8 @@ export default function Component() {
                     </div>
                     <CardTitle className="text-xl font-semibold">{item.title}</CardTitle>
                   </CardHeader>
-<CardContent className="relative z-10">
+                  <CardContent className="relative z-10">
+                
                     <p className="text-muted-foreground">{item.description}</p>
                   </CardContent>
                 </Card>

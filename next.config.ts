@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
+import withPWA from 'next-pwa'
 
-const nextConfig: NextConfig = {
+const config: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -8,8 +9,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.public.blob.vercel-storage.com',
       },
-    ],
-    domains: ['placeholder.com'], // Add any other image domains you'll be using
+      {
+        protocol: 'https',
+        hostname: 'placeholder.com',
+      }
+    ]
   },
   i18n: {
     locales: ['en'],
@@ -22,14 +26,14 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
-  // Progressive Web App configuration
-  pwa: {
-    dest: 'public',
-    disable: process.env.NODE_ENV === 'development',
-    register: true,
-    scope: '/',
-    sw: 'service-worker.js',
-  },
-};
+}
 
-export default nextConfig;
+const nextConfig = withPWA({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+  register: true,
+  scope: '/',
+  sw: 'service-worker.js',
+})(config)
+
+export default nextConfig
