@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { AnimatePresence } from 'framer-motion'
 import { Metadata } from 'next'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -64,13 +65,15 @@ export default function RootLayout({
         <link rel="author" href="https://devmajxr.co.za" />
       </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <Header />
-        <AnimatePresence mode="wait">
-          <main className="flex-grow">
-            {children}
-          </main>
-        </AnimatePresence>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <AnimatePresence mode="wait">
+            <main className="flex-grow">
+              {children}
+            </main>
+          </AnimatePresence>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   )

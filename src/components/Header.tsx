@@ -5,12 +5,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useAuth } from '@/contexts/AuthContext'
+import { LogOut, CircleUserRound } from 'lucide-react'
+import { Button } from "@/components/ui/button"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const { user, logout } = useAuth()
 
   const toggleMenu = () => {
     setIsTransitioning(true)
@@ -55,6 +59,15 @@ export default function Header() {
     }, 500);
   };
 
+  const handleLogout = async () => {
+    try {
+      await logout()
+      router.push('/login')
+    } catch (error) {
+      console.error('Failed to log out:', error)
+    }
+  }
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -50 }}
@@ -71,9 +84,48 @@ export default function Header() {
             height={80}
             className="w-auto h-12 rounded"
           />
-          <span className="ml-2 text-xl font-bold"><span className="text-[#fca311]">F</span>UZILE <span className="text-[#fca311]">Z</span>ONO</span>
         </Link>
-        <div className="md:hidden z-50">
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center gap-4">
+          {/* Admin Controls - Always visible on mobile */}
+          {user ? (
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-[#e5e5e5] hover:text-[#fca311] flex items-center gap-2"
+                asChild
+              >
+                <Link href="/admin">
+                  <CircleUserRound className="h-4 w-4" />
+                  <span className="text-sm">Fuzile</span>
+                </Link>
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+                className="text-[#e5e5e5] hover:text-[#fca311] flex items-center gap-2"
+              >
+                <LogOut className="h-4 w-4" />
+                <span className="text-sm">Logout</span>
+              </Button>
+            </div>
+          ) : (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#e5e5e5] hover:text-[#fca311]"
+              asChild
+            >
+              <Link href="/login">
+                <span className="text-sm">Login</span>
+              </Link>
+            </Button>
+          )}
+
+          {/* Hamburger Menu Button */}
           <button 
             onClick={toggleMenu} 
             className="w-10 h-10 flex flex-col justify-center items-center focus:outline-none"
@@ -84,6 +136,7 @@ export default function Header() {
             <span className={`bg-[#e5e5e5] h-0.5 w-6 rounded-full transform transition duration-300 ease-in-out ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
           </button>
         </div>
+
         <AnimatePresence mode="wait">
           {isMenuOpen && (
             <motion.div 
@@ -117,7 +170,9 @@ export default function Header() {
             </motion.div>
           )}
         </AnimatePresence>
-        <ul className="hidden md:flex md:space-x-4">
+
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex md:items-center md:space-x-4">
           {menuItems.map((item) => (
             <li key={item.href}>
               <Link 
@@ -130,6 +185,43 @@ export default function Header() {
               </Link>
             </li>
           ))}
+          <li className="ml-4">
+            {user ? (
+              <div className="flex items-center gap-4">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[#e5e5e5] hover:text-[#fca311] flex items-center gap-2"
+                  asChild
+                >
+                  <Link href="/admin">
+                    <CircleUserRound className="h-4 w-4" />
+                    Fuzile
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="text-[#e5e5e5] hover:text-[#fca311] flex items-center gap-2"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-[#e5e5e5] hover:text-[#fca311]"
+                asChild
+              >
+                <Link href="/login">
+                  Login
+                </Link>
+              </Button>
+            )}
+          </li>
         </ul>
       </nav>
     </motion.header>
