@@ -149,7 +149,7 @@ function ContactInformation() {
         </div>
         <div className="flex items-center space-x-2">
           <Mail className="h-5 w-5 text-primary" />
-          <a href="mailto:fuzile@example.com" className="hover:underline">egiefuz@gmail.com</a>
+          <a href="mailto:Fuzile.Zono@Outlook.com" className="hover:underline">Fuzile.Zono@Outlook.com</a>
         </div>
         <div className="flex items-start space-x-2">
           <MapPin className="h-5 w-5 text-primary mt-1" />
