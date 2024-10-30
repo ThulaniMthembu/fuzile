@@ -114,13 +114,13 @@ export default function Header() {
             </div>
           ) : (
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
-              className="text-[#e5e5e5] hover:text-[#fca311]"
+              className="text-[#fca311] border-[#fca311] hover:bg-[#fca311] hover:text-[#14213d]"
               asChild
             >
               <Link href="/login">
-                <span className="text-sm">Login</span>
+                <span className="text-sm font-bold">Login</span>
               </Link>
             </Button>
           )}
@@ -211,13 +211,13 @@ export default function Header() {
               </div>
             ) : (
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
-                className="text-[#e5e5e5] hover:text-[#fca311]"
+                className="text-[#fca311] border-[#fca311] hover:bg-[#fca311] hover:text-[#14213d]"
                 asChild
               >
                 <Link href="/login">
-                  Login
+                  <span className="font-bold">Login</span>
                 </Link>
               </Button>
             )}
