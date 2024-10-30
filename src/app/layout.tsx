@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Fuzile Zono | Innovative Procurement Specialist',
   description: 'Portfolio of Fuzile Zono, an Innovative Procurement Specialist with expertise in strategic sourcing and supply chain optimization. Website by Thulani Mthembu.',
-  keywords: ['Fuzile Zono', 'Procurement Specialist', 'Innovative Procurement', 'Supply Chain', 'Strategic Sourcing', 'Portfolio', 'Thulani Mthembu', 'devmajxr'],
+  keywords: ['Fuzile Zono', 'Fuzile', 'Zono', 'Zono Fuzile', 'Procurement Specialist', 'Innovative Procurement', 'Supply Chain', 'Strategic Sourcing', 'Portfolio', 'Thulani Mthembu', 'devmajxr'],
   authors: [
     { name: 'Fuzile Zono' },
     { name: 'Thulani Mthembu', url: 'https://devmajxr.co.za' }
