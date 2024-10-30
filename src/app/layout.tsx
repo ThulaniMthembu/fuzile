@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   ],
   creator: 'Thulani Mthembu',
   publisher: 'devmajxr.co.za',
+  verification: {
+    google: 'google523f418b1738107c',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
