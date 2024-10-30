@@ -22,13 +22,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.fuzilezono.com',
+    url: 'https://www.fuzilezono.co.za',
     siteName: 'Fuzile Zono Portfolio',
     title: 'Fuzile Zono | Innovative Procurement Specialist',
     description: 'Explore the expertise and achievements of Fuzile Zono, an Innovative Procurement Specialist revolutionizing supply chain management. Website crafted by Thulani Mthembu (devmajxr.co.za).',
     images: [
       {
-        url: 'https://www.fuzilezono.com/og-image.jpg',
+        url: 'https://www.fuzilezono.co.za/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Fuzile Zono - Innovative Procurement Specialist',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Fuzile Zono | Innovative Procurement Specialist',
     description: 'Discover how Fuzile Zono is transforming procurement and supply chain management with innovative strategies. Website by Thulani Mthembu (devmajxr.co.za).',
-    images: ['https://www.fuzilezono.com/twitter-image.jpg'],
+    images: ['https://www.fuzilezono.co.za/twitter-image.jpg'],
     creator: '@devmajxr',
     site: '@fuzilezono',
   },
