@@ -144,20 +144,20 @@ export default function Header() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5 }}
-              className="md:hidden fixed inset-0 bg-[#14213d] flex items-center justify-center z-40"
+              className="md:hidden fixed inset-0 bg-[#14213d] flex items-start pt-24 px-8 z-40"
             >
-              <ul className="text-center space-y-8">
+              <ul className="w-full space-y-8">
                 {menuItems.map((item, index) => (
                   <motion.li 
                     key={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <a
                       href={item.href}
-                      className={`text-3xl font-semibold transition-colors ${
+                      className={`text-3xl font-semibold transition-colors block ${
                         pathname === item.href ? 'text-[#fca311]' : 'text-[#e5e5e5] hover:text-[#fca311]'
                       }`}
                       onClick={(e) => handleNavigation(e, item.href)}
