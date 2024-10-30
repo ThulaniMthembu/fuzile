@@ -86,8 +86,8 @@ export default function Header() {
           />
         </Link>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
+        {/* Mobile Menu Button and Controls */}
+        <div className="md:hidden flex items-center gap-4 z-50">
           {/* Admin Controls - Always visible on mobile */}
           {user ? (
             <div className="flex items-center gap-2">
