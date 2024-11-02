@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Fuzile Zono | Innovative Procurement Specialist',
-  description: 'Portfolio of Fuzile Zono, an Innovative Procurement Specialist with expertise in strategic sourcing and supply chain optimization. Website by Thulani Mthembu.',
+  description: 'Portfolio of Fuzile Zono, an Innovative Procurement Specialist with expertise in strategic sourcing and supply chain optimization.',
   keywords: ['Fuzile Zono', 'Fuzile', 'Zono', 'Zono Fuzile', 'Procurement Specialist', 'Innovative Procurement', 'Supply Chain', 'Strategic Sourcing', 'Portfolio', 'Thulani Mthembu', 'devmajxr'],
   authors: [
     { name: 'Fuzile Zono' },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: 'https://www.fuzilezono.co.za',
     siteName: 'Fuzile Zono Portfolio',
     title: 'Fuzile Zono | Innovative Procurement Specialist',
-    description: 'Explore the expertise and achievements of Fuzile Zono, an Innovative Procurement Specialist revolutionizing supply chain management. Website crafted by Thulani Mthembu (devmajxr.co.za).',
+    description: 'Explore the expertise and achievements of Fuzile Zono, an Innovative Procurement Specialist revolutionizing supply chain management.',
     images: [
       {
         url: 'https://www.fuzilezono.co.za/og-image.jpg',
