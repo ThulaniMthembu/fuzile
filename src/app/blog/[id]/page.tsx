@@ -20,6 +20,29 @@ interface BlogPost {
   imageUrl: string
 }
 
+const formatContent = (content: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return content.split('\n\n').map((paragraph, index) => (
+    <p key={index} className="text-muted-foreground">
+      {paragraph.split(urlRegex).map((part, i) => 
+        urlRegex.test(part) ? (
+          <a 
+            key={i} 
+            href={part} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-primary hover:underline"
+          >
+            {part}
+          </a>
+        ) : (
+          part
+        )
+      )}
+    </p>
+  ));
+};
+
 export default function BlogPost() {
   const params = useParams()
   const [post, setPost] = useState<BlogPost | null>(null)
@@ -126,9 +149,7 @@ export default function BlogPost() {
             </div>
 
             <div className="space-y-4">
-              {post.content.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="text-muted-foreground">{paragraph}</p>
-              ))}
+              {formatContent(post.content)}
             </div>
 
             <div className="mt-8">

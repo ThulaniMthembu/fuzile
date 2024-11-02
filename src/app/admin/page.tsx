@@ -58,6 +58,19 @@ const formatFileSize = (bytes: number): string => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`
 }
 
+const formatContent = (content: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return content.split(urlRegex).map((part, index) => 
+    urlRegex.test(part) ? (
+      <a key={index} href={part} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+};
+
 export default function AdminPage() {
   const { user, logout } = useAuth()
   const router = useRouter()
@@ -409,9 +422,11 @@ export default function AdminPage() {
                         day: 'numeric'
                       })}
                     </p>
-                    <p className="text-sm text-muted-foreground truncate">{post.content}</p>
+                    <div className="text-sm text-muted-foreground line-clamp-3">
+                      {formatContent(post.content)}
+                    </div>
                     <div className="mt-2">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs  font-medium bg-primary/10 text-primary">
                         {post.category}
                       </span>
                     </div>
@@ -423,7 +438,7 @@ export default function AdminPage() {
                       onClick={() => handleEdit(post)}
                       disabled={isLoading}
                     >
-                      <Pencil className="h-4  w-4" />
+                      <Pencil className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="destructive"
